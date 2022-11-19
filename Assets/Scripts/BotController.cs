@@ -12,13 +12,10 @@ public class BotController : MonoBehaviour
         rgb=GetComponent<Rigidbody>();
     }
 
-    void OnValidate() {
-        
-    }
-
     void FixedUpdate() {
         rotate();
         move();
+        exit();
     }
 
     void rotate() {
@@ -35,5 +32,11 @@ public class BotController : MonoBehaviour
         float zinput=Input.GetAxis("Vertical");
         Vector3 dest=new Vector3(xinput,0,zinput).normalized;
         rgb.AddRelativeForce(dest*speed);
+    }
+
+    void exit() {
+        if(Input.GetKey(KeyCode.Escape)) {
+            Application.Quit();
+        }
     }
 }
